@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app="szyfratorApp">
+
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
+
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
+  <script src="script.js"></script>
+</head>
+
+<body ng-controller="mainController">
+
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="nav navbar-header">
+        <a class="nav navbar-brand" href="/">Szyfrator</a>
+      </div>
+    </div>
+  </nav>
+      <div class="tab-content">
+        <div class="tab-pane active"><a href="#"><i class="fa fa-home"></i> Home</a></div>
+        <div class="tab-pane"><a href="#about"><i class="fa fa-shield"></i> About</a></div>
+        <div class="tab-pane" ><a href="#contact"><i class="fa fa-comment"></i> Contact</a></div>
+      </div>
+
+
+  <div id="main">
+    <div ng-view></div>
+  </div>
+  
+  <footer class="text-center">
+    <p></p>
+  </footer>
+  
+</body>
+
+</html>
