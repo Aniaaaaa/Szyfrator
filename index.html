@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html ng-app="szyfratorApp">
+<html ng-app="szyfratorApp" >
 
 <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
 
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.min.js"></script>
   <script src="script.js"></script>
 </head>
 
@@ -15,19 +16,22 @@
   <nav class="navbar navbar-default">
     <div class="container">
       <div class="nav navbar-header">
-        <a class="nav navbar-brand" href="/">Szyfrator</a>
+        <a class="nav navbar-brand" href="#">Szyfrator</a>
       </div>
     </div>
   </nav>
-      <ul class="nav nav-pills">
-        <li class="tab-pane active"><a href="#ceasar">Szyfr Cezara</a></li>
-        <li class="tab-pane"><a href="#vigenere">Szyfr Vigenere'a</a></li>
-        <li class="tab-pane" ><a href="#transposition">Szyfr Przestawieniowy</a></li>
-        <li class="tab-pane" ><a href="#bacon">Szyfr Bacona</a></li>
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#ceasar">Szyfr Cezara</a></li>
+        <li><a href="#vigenere">Szyfr Vigenere'a</a></li>
+        <li><a href="#transposition">Szyfr Przestawieniowy</a></li>
+        <li><a href="#originalVigenere">Oryginalny Szyfr Vigenere'a</a></li>
+        <li><a href="#railFence">Szyfr Płotkowy</a></li>
+        <li><a href="#weirdAlphabet">Szyfr "Dziwny Alfabet"</a></li>
+        <li><a href="#atbash">Szyfr Atbasz</a></li>
       </ul>
 
 
-  <div id="main">
+  <div id="main" >
     <div ng-view></div>
   </div>
   
