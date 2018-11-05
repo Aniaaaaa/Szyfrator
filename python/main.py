@@ -318,7 +318,7 @@ def try_english_dictionary(possible_answers, dictionary, word_percentage=20):
 
 
 def make_dictionary_english():
-    dict_file = open("python/dict.txt", 'r')
+    dict_file = open("dict.txt", 'r')
     all_lines = dict_file.readlines()
     dictionary = dict()
     for i in range(len(all_lines)):
@@ -326,6 +326,7 @@ def make_dictionary_english():
         dictionary[all_lines[i].lower()] = None
     return dictionary
 
-dictionary = make_dictionary_english()
-print(transposition_uncode_blind("tmtuyrlzlrc"))
+if __name__ == "__main__":
+	dictionary = make_dictionary_english()
+	print(transposition_uncode_blind("tmtuyrlzlrc"))
 

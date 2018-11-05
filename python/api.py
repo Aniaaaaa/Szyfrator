@@ -20,12 +20,11 @@ def post_ceasarCode():
 def post_ceasarDecode():
     data = json.loads(request.data.decode())
     text = data["text"]
-    if (data["key"]!= ""){
+    if (data["key"]!= ""):
         key = data["key"] 
         result = main.caesar_uncode_known(text, key)
-    } else {
+    else:
         result = main.caesar_uncode_blind(text)
-    }
     return result
 
 #Vigenere
@@ -58,12 +57,11 @@ def post_transpositionCode():
 def post_transpositionDecode():
     data = json.loads(request.data.decode())
     text = data["text"]
-    if (data["key"]!= ""){
+    if (data["key"]!= ""):
         key = data["key"] 
         result = main.transposition_uncode_known(text, key)
-    } else {
+    else:
         result = main.transposition_uncode_blind(text)
-    }
     return result
 
 #Original Vigenere
@@ -79,12 +77,11 @@ def post_originalVigenereCode():
 def post_originalVigenereDecode():
     data = json.loads(request.data.decode())
     text = data["text"]    
-    if (data["key"]!= ""){
+    if (data["key"]!= ""):
         key = data["key"] 
         result = main.original_vinegere_uncode_known(text, key)
-    } else {
+    else:
         result = main.original_vinegere_uncode_blind(text)
-    }
     return result
 
 #railFence
@@ -100,12 +97,11 @@ def post_railFenceCode():
 def post_railFenceDecode():
     data = json.loads(request.data.decode())
     text = data["text"]    
-    if (data["key"]!= ""){
+    if (data["key"]!= ""):
         key = data["key"] 
         result = main.railfence_uncode_known(text, key)
-    } else {
+    else:
         result = main.railfence_uncode_blind(text)
-    }
     return result
 
 #weirdAlphabet
