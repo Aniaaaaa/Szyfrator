@@ -1,3 +1,9 @@
-<div class="jumbotron text-center">
-	<h1>{{ message }}</h1>
-</div>
+	<div>
+		Tekst:
+		<input type="text" class="form-row" ng-model="text">
+		Klucz:
+		<input type="text" class="form-row" ng-model="key">
+		<button ng-click="code()">ZAKODUJ</button>
+		<button ng-click="decode()">DEKODUJ</button>
+		{{result}}
+	</div>

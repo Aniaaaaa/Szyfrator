@@ -69,8 +69,28 @@ szyfratorApp.controller('railFenceController', function($scope) {
 	$scope.message = 'Szyfr Płotkowy.';
 });
 
-szyfratorApp.controller('weirdAlphabetController', function($scope) {
+szyfratorApp.controller('weirdAlphabetController', function($scope, $http) {
 	$scope.message = 'Szyfr \"Dziwny Alfabet\".';
+	$scope.code = function(){
+		$scope.result = "Przed requestem"
+		$http.post('http://0.0.0.0:5000/weirdAlphabetCode', {"text": $scope.text, "key": $scope.key}).
+		success(function(results) {
+		  $scope.result = "Zakodowany tekst: " + results;
+		}).
+		error(function(error) {
+			$scope.result = error;
+		});
+	}
+	$scope.decode = function(){
+		$scope.result = "Przed requestem"
+		$http.post('http://0.0.0.0:5000/weirdAlphabetDecode', {"text": $scope.text, "key": $scope.key}).
+		success(function(results) {
+		  $scope.result = "Odkodowany tekst: " + results;
+		}).
+		error(function(error) {
+			$scope.result = error;
+		});
+	}
 });
 
 szyfratorApp.controller('atbashController', function($scope) {
