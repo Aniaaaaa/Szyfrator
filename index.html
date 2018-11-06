@@ -21,15 +21,15 @@
     </div>
   </nav>
       <ul class="nav nav-tabs">
-        <li><a href="#ceasar">Szyfr Cezara</a></li>
-        <li><a href="#vigenere">Szyfr Vigenere'a</a></li>
-        <li><a href="#transposition">Szyfr Przestawieniowy</a></li>
-        <li><a href="#originalVigenere">Oryginalny Szyfr Vigenere'a</a></li>
-        <li><a href="#railFence">Szyfr Płotkowy</a></li>
-        <li><a href="#weirdAlphabet">Szyfr "Dziwny Alfabet"</a></li>
-        <li><a href="#atbash">Szyfr Atbasz</a></li>
+        <li ng-class="{active: $route.current.activetab == 'ceasar'}"><a href="#ceasar">Szyfr Cezara</a></li>
+        <li ng-class="{active: $route.current.activetab == 'vigenere'}"><a href="#vigenere">Szyfr Vigenere'a</a></li>
+        <li ng-class="{active: $route.current.activetab == 'transposition'}"><a href="#transposition">Szyfr Przestawieniowy</a></li>
+        <li ng-class="{active: $route.current.activetab == 'originalVigenere'}"><a href="#originalVigenere">Oryginalny Szyfr Vigenere'a</a></li>
+        <li ng-class="{active: $route.current.activetab == 'railFence'}"><a href="#railFence">Szyfr Płotkowy</a></li>
+        <li ng-class="{active: $route.current.activetab == 'weirdAlphabet'}"><a href="#weirdAlphabet">Szyfr "Dziwny Alfabet"</a></li>
+        <li ng-class="{active: $route.current.activetab == 'atbash'}"><a href="#atbash">Szyfr Atbasz</a></li>
       </ul>
-
+<!--brak polskich znakow!!! dorzucic bacon cypher - bo zapomnialam-->
 
   <div id="main" >
     <div ng-view></div>

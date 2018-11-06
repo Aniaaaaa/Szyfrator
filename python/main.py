@@ -34,6 +34,7 @@ def caesar_uncode_blind(message):
 
 
 def caesar_uncode_known(message, key):
+    key = int(float(key))
     return caesar_code(message, 26-key)
 
 
@@ -85,6 +86,7 @@ def atbash_uncode(message):
 
 
 def transposition_code(message, key):
+    key = int(float(key))
     coded_message = ""
     message = "".join(message.split(" "))
     for i in range(key):
@@ -95,6 +97,7 @@ def transposition_code(message, key):
 
 
 def transposition_uncode_known(message, key):
+    key = int(float(key))
     decoded_message = list(range(len(message)))
     x = 0
     y = 0
@@ -192,6 +195,7 @@ def original_vinegere_uncode_blind(message):
 
 
 def railfence_code(message, key):
+    key=int(float(key))
     code_list = list()
     for i in range(key):
         code_list.append("")
@@ -213,6 +217,7 @@ def railfence_code(message, key):
 
 
 def railfence_uncode_known(message, key):
+    key = int(float(key))
     uncoded_message = ""
     lines_of_text = list()
     for i in range(key):

@@ -7,50 +7,58 @@ szyfratorApp.config(function($routeProvider) {
     
         .when('/', {
             templateUrl : 'pages/Main.html',
-            controller  : 'mainController'
+			controller  : 'mainController'
         })
 
 		.when('/ceasar', {
 			templateUrl : 'pages/Ceasar.html',
-			controller  : 'ceasarController'
+			controller  : 'ceasarController',
+			params: {activetab: 'ceasar'}
 		})
 
 		.when('/vigenere', {
 			templateUrl : 'pages/Vigenere.html',
-			controller  : 'vigenereController'
+			controller  : 'vigenereController',
+			activetab: 'vigenere'
 		})
 
 		.when('/transposition', {
 			templateUrl : 'pages/Transposition.html',
-			controller  : 'transpositionController'
+			controller  : 'transpositionController',
+			activetab: 'transposition'
         })
         
         .when('/originalVigenere', {
 			templateUrl : 'pages/OriginalVigenere.html',
-			controller  : 'originalVigenereController'
+			controller  : 'originalVigenereController',
+			activetab: 'originalVigenere'
         })
         
 		.when('/railFence', {
 			templateUrl : 'pages/RailFence.html',
-			controller  : 'railFenceController'
+			controller  : 'railFenceController',
+			activetab: 'railFence'
         })
         
 		.when('/weirdAlphabet', {
 			templateUrl : 'pages/WeirdAlphabet.html',
-			controller  : 'weirdAlphabetController'
+			controller  : 'weirdAlphabetController',
+			activetab: 'weirdAlphabet'
         })
         
 		.when('/atbash', {
 			templateUrl : 'pages/Atbash.html',
-			controller  : 'atbashController'
+			controller  : 'atbashController',
+			activetab: 'atbash'
         });
 });
 
-szyfratorApp.controller('mainController', function($scope,$http) {
+szyfratorApp.controller('mainController', function($scope) {
     $scope.message = 'Aplikacja szyfrująca i deszyfrująca.';
 });
 
-szyfratorApp.controller('ceasarController', function($scope,$http) {
+szyfratorApp.controller('ceasarController', function($scope,$http,$route) {
+	$scope.routes = $route.current;
 	$scope.code = function(){
 		$http.post(API_URL+'/ceasarCode', {"text": $scope.text, "key": $scope.key}).
 		success(function(results) {
