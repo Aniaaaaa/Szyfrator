@@ -1,5 +1,7 @@
 var szyfratorApp = angular.module("szyfratorApp", ["ngRoute"]);
 
+const API_URL = "http://0.0.0.0:5000"
+
 szyfratorApp.config(function($routeProvider) {
     $routeProvider
     
@@ -44,53 +46,118 @@ szyfratorApp.config(function($routeProvider) {
         });
 });
 
-szyfratorApp.controller('mainController', function($scope) {
+szyfratorApp.controller('mainController', function($scope,$http) {
     $scope.message = 'Aplikacja szyfrująca i deszyfrująca.';
 });
 
-	// create the controller and inject Angular's $scope
-szyfratorApp.controller('ceasarController', function($scope) {
-	$scope.message = 'Szyfr Cezara.';
-});
-
-szyfratorApp.controller('vigenereController', function($scope) {
+szyfratorApp.controller('ceasarController', function($scope,$http) {
 	$scope.code = function(){
-		$http.post('http://0.0.0.0:5000/vigenereCode', {"text": $scope.text, "key": $scope.key}).
+		$http.post(API_URL+'/ceasarCode', {"text": $scope.text, "key": $scope.key}).
 		success(function(results) {
 		  $scope.result = "Zakodowany tekst: " + results;
 		}).
 		error(function(error) {
 			$scope.result = error;
 		});
-		//$scope.result= "ZAKODOWANO"
 	}
 	$scope.decode = function(){
-		/*$http.post('http://0.0.0.0:5000/vigenereDecode', {"text": $scope.text, "key": $scope.key}).
+		$http.post(API_URL+'/ceasarDecode', {"text": $scope.text, "key": $scope.key}).
 		success(function(results) {
 		  $scope.result = "Odkodowany tekst: " + results;
 		}).
 		error(function(error) {
 			$scope.result = error;
-		});*/
-		$scope.result = "ODKODOWANO"
+		});
 	}
 });
 
-szyfratorApp.controller('transpositionController', function($scope) {
-	$scope.message = 'Szyfr przestawny.';
+szyfratorApp.controller('vigenereController', function($scope, $http) {
+	$scope.code = function(){
+		$http.post(API_URL+'/vigenereCode', {"text": $scope.text, "key": $scope.key}).
+		success(function(results) {
+		  $scope.result = "Zakodowany tekst: " + results;
+		}).
+		error(function(error) {
+			$scope.result = error;
+		});
+	}
+	$scope.decode = function(){
+		$http.post(API_URL+'/vigenereDecode', {"text": $scope.text, "key": $scope.key}).
+		success(function(results) {
+		  $scope.result = "Odkodowany tekst: " + results;
+		}).
+		error(function(error) {
+			$scope.result = error;
+		});
+	}
 });
 
-szyfratorApp.controller('originalVigenereController', function($scope) {
-	$scope.message = 'Oryginalny Szyfr Vigenera.';
+szyfratorApp.controller('transpositionController', function($scope,$http) {
+	$scope.code = function(){
+		$http.post(API_URL+'/transpositionCode', {"text": $scope.text, "key": $scope.key}).
+		success(function(results) {
+		  $scope.result = "Zakodowany tekst: " + results;
+		}).
+		error(function(error) {
+			$scope.result = error;
+		});
+	}
+	$scope.decode = function(){
+		$http.post(API_URL+'/transpositionDecode', {"text": $scope.text, "key": $scope.key}).
+		success(function(results) {
+		  $scope.result = "Odkodowany tekst: " + results;
+		}).
+		error(function(error) {
+			$scope.result = error;
+		});
+	}
 });
 
-szyfratorApp.controller('railFenceController', function($scope) {
-	$scope.message = 'Szyfr Płotkowy.';
+szyfratorApp.controller('originalVigenereController', function($scope,$http) {
+	$scope.code = function(){
+		$http.post(API_URL+'/originalVigenereCode', {"text": $scope.text, "key": $scope.key}).
+		success(function(results) {
+		  $scope.result = "Zakodowany tekst: " + results;
+		}).
+		error(function(error) {
+			$scope.result = error;
+		});
+	}
+	$scope.decode = function(){
+		$http.post(API_URL+'/originalVigenereDecode', {"text": $scope.text, "key": $scope.key}).
+		success(function(results) {
+		  $scope.result = "Odkodowany tekst: " + results;
+		}).
+		error(function(error) {
+			$scope.result = error;
+		});
+	}
+});
+
+szyfratorApp.controller('railFenceController', function($scope, $http) {
+	$scope.code = function(){
+		$http.post(API_URL+'/railFenceCode', {"text": $scope.text, "key": $scope.key}).
+		success(function(results) {
+		  $scope.result = "Zakodowany tekst: " + results;
+		}).
+		error(function(error) {
+			$scope.result = error;
+		});
+	}
+	$scope.decode = function(){
+		$http.post(API_URL+'/railFenceDecode', {"text": $scope.text, "key": $scope.key}).
+		success(function(results) {
+		  $scope.result = "Odkodowany tekst: " + results;
+		}).
+		error(function(error) {
+			$scope.result = error;
+		});
+	}
 });
 
 szyfratorApp.controller('weirdAlphabetController', function($scope, $http) {
 	$scope.code = function(){
-		$http.post('http://0.0.0.0:5000/weirdAlphabetCode', {"text": $scope.text, "key": $scope.key}).
+		$http.post(API_URL+'/weirdAlphabetCode', {"text": $scope.text, "key": $scope.key}).
 		success(function(results) {
 		  $scope.result = "Zakodowany tekst: " + results;
 		}).
@@ -99,7 +166,7 @@ szyfratorApp.controller('weirdAlphabetController', function($scope, $http) {
 		});
 	}
 	$scope.decode = function(){
-		$http.post('http://0.0.0.0:5000/weirdAlphabetDecode', {"text": $scope.text, "key": $scope.key}).
+		$http.post(API_URL+'/weirdAlphabetDecode', {"text": $scope.text, "key": $scope.key}).
 		success(function(results) {
 		  $scope.result = "Odkodowany tekst: " + results;
 		}).
@@ -109,6 +176,23 @@ szyfratorApp.controller('weirdAlphabetController', function($scope, $http) {
 	}
 });
 
-szyfratorApp.controller('atbashController', function($scope) {
-	$scope.message = 'Szyfr Atbasz.';
+szyfratorApp.controller('atbashController', function($scope, $http) {
+	$scope.code = function(){
+		$http.post(API_URL+'/atbashCode', {"text": $scope.text, "key": $scope.key}).
+		success(function(results) {
+		  $scope.result = "Zakodowany tekst: " + results;
+		}).
+		error(function(error) {
+			$scope.result = error;
+		});
+	}
+	$scope.decode = function(){
+		$http.post(API_URL+'/atbashDecode', {"text": $scope.text, "key": $scope.key}).
+		success(function(results) {
+		  $scope.result = "Odkodowany tekst: " + results;
+		}).
+		error(function(error) {
+			$scope.result = error;
+		});
+	}
 });
