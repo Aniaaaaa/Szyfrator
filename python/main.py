@@ -1,13 +1,14 @@
 import math
 
 special_signs = {",", " ", ".", "?", "!"}
+alphabet ="QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm"
 
 def caesar_code(message, key):
     key = int(float(key))
     message = str(message)
     message_list = list(message)
     for i in range(len(message_list)):
-        if message_list[i] != " ":
+        if message_list[i] in alphabet:
             letter_ascii = ord(message_list[i])
             if letter_ascii > 96:
                 letter_ascii -= 96
@@ -43,7 +44,7 @@ def vigenere_code(message, key):
     key_len = len(key)
     key_key = 0
     for i in range(len(message)):
-        if message[i] not in special_signs:
+        if message[i] in alphabet:
             message_list[i] = caesar_code(message[i], (ord(key[key_key].lower()) - 97) % 26)
             key_key += 1
             key_key = key_key % key_len
@@ -56,7 +57,7 @@ def vigenere_uncode(message, key):
     key_len = len(key)
     key_key = 0
     for i in range(len(message)):
-        if message[i] not in special_signs:
+        if message[i] in alphabet:
             message_list[i] = caesar_code(message[i], 26-((ord(key[key_key].lower()) - 97) % 26))
             key_key += 1
             key_key = key_key % key_len
@@ -65,16 +66,17 @@ def vigenere_uncode(message, key):
 
 def atbash_code(message):
     message_list = list(message)
-    alphabet = dict()
+    alphabet_atbash = dict()
     for i in range(26):
-        alphabet[chr(i + 97)] = chr(97 + (25 - i))
+        alphabet_atbash[chr(i + 97)] = chr(97 + (25 - i))
     for i in range(len(message_list)):
-        big = False
-        if ord(message_list[i]) < 95:
-            big = True
-        message_list[i] = alphabet[message_list[i].lower()]
-        if big == True:
-            message_list[i] = message_list[i].upper()
+        if message_list[i] in alphabet:
+            big = False
+            if ord(message_list[i]) < 95:
+                big = True
+            message_list[i] = alphabet_atbash[message_list[i].lower()]
+            if big == True:
+                message_list[i] = message_list[i].upper()
     return "".join(message_list)
 
 
@@ -84,6 +86,7 @@ def atbash_uncode(message):
 
 def transposition_code(message, key):
     coded_message = ""
+    message = "".join(message.split(" "))
     for i in range(key):
         for j in range(int(math.ceil(len(message)/key))):
             if i + j*key < len(message):
@@ -264,7 +267,7 @@ def weird_alphabet_code(message, key):
     alphabet = ""
     coded_message = ""
     for x in key:
-        if x not in key_alphabet and x.lower() > 96 and x.lower() < 123:
+        if x not in key_alphabet and ord(x.lower()) > 96 and ord(x.lower()) < 123:
             key_alphabet += x
     for i in range(26):
         char = chr(97+i)
@@ -286,7 +289,7 @@ def weird_alphabet_uncode(message, key):
     alphabet = ""
     uncoded_message = ""
     for x in key:
-        if x not in key_alphabet and x.lower() > 96 and x.lower() < 123:
+        if x not in key_alphabet and ord(x.lower()) > 96 and ord(x.lower()) < 123:
             key_alphabet += x
     for i in range(26):
         alphabet += chr(97+i)
@@ -327,6 +330,5 @@ def make_dictionary_english():
     return dictionary
 
 if __name__ == "__main__":
-	dictionary = make_dictionary_english()
-	print(transposition_uncode_blind("tmtuyrlzlrc"))
+	print(transposition_code("WE ARE DISCOVERED. FLEE AT ONCE", 3))
 
