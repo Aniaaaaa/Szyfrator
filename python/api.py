@@ -64,6 +64,21 @@ def post_transpositionDecode():
         result = main.transposition_uncode_blind(text)
     return result
 
+#Bacon
+@app.route('/baconCode', methods=['POST'])
+def post_baconCode():
+    data = json.loads(request.data.decode())
+    text = data["text"]
+    result = main.bacon_code(text)
+    return result
+
+@app.route('/baconDecode', methods=['POST'])
+def post_baconDecode():
+    data = json.loads(request.data.decode())
+    text = data["text"]
+    result = main.bacon_uncode(text)
+    return result
+
 #Original Vigenere
 @app.route('/originalVigenereCode', methods=['POST'])
 def post_originalVigenereCode():

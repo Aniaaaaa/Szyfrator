@@ -12,44 +12,42 @@ szyfratorApp.config(function($routeProvider) {
 
 		.when('/ceasar', {
 			templateUrl : 'pages/Ceasar.html',
-			controller  : 'ceasarController',
-			params: {activetab: 'ceasar'}
+			controller  : 'ceasarController'
 		})
 
 		.when('/vigenere', {
 			templateUrl : 'pages/Vigenere.html',
-			controller  : 'vigenereController',
-			activetab: 'vigenere'
+			controller  : 'vigenereController'
 		})
 
 		.when('/transposition', {
 			templateUrl : 'pages/Transposition.html',
-			controller  : 'transpositionController',
-			activetab: 'transposition'
+			controller  : 'transpositionController'
+		})
+		
+		.when('/bacon', {
+			templateUrl : 'pages/Bacon.html',
+			controller  : 'baconController'
         })
         
         .when('/originalVigenere', {
 			templateUrl : 'pages/OriginalVigenere.html',
-			controller  : 'originalVigenereController',
-			activetab: 'originalVigenere'
+			controller  : 'originalVigenereController'
         })
         
 		.when('/railFence', {
 			templateUrl : 'pages/RailFence.html',
-			controller  : 'railFenceController',
-			activetab: 'railFence'
+			controller  : 'railFenceController'
         })
         
 		.when('/weirdAlphabet', {
 			templateUrl : 'pages/WeirdAlphabet.html',
-			controller  : 'weirdAlphabetController',
-			activetab: 'weirdAlphabet'
+			controller  : 'weirdAlphabetController'
         })
         
 		.when('/atbash', {
 			templateUrl : 'pages/Atbash.html',
-			controller  : 'atbashController',
-			activetab: 'atbash'
+			controller  : 'atbashController'
         });
 });
 
@@ -58,7 +56,7 @@ szyfratorApp.controller('mainController', function($scope) {
 });
 
 szyfratorApp.controller('ceasarController', function($scope,$http,$route) {
-	$scope.routes = $route.current;
+	$scope.routes = $route.current.loadedTemplateUrl;
 	$scope.code = function(){
 		$http.post(API_URL+'/ceasarCode', {"text": $scope.text, "key": $scope.key}).
 		success(function(results) {
@@ -112,6 +110,27 @@ szyfratorApp.controller('transpositionController', function($scope,$http) {
 	}
 	$scope.decode = function(){
 		$http.post(API_URL+'/transpositionDecode', {"text": $scope.text, "key": $scope.key}).
+		success(function(results) {
+		  $scope.result = "Odkodowany tekst: " + results;
+		}).
+		error(function(error) {
+			$scope.result = error;
+		});
+	}
+});
+
+szyfratorApp.controller('baconController', function($scope,$http) {
+	$scope.code = function(){
+		$http.post(API_URL+'/baconCode', {"text": $scope.text}).
+		success(function(results) {
+		  $scope.result = "Zakodowany tekst: " + results;
+		}).
+		error(function(error) {
+			$scope.result = error;
+		});
+	}
+	$scope.decode = function(){
+		$http.post(API_URL+'/baconDecode', {"text": $scope.text}).
 		success(function(results) {
 		  $scope.result = "Odkodowany tekst: " + results;
 		}).
