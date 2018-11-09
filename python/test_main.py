@@ -29,6 +29,9 @@ def test_bacon_code():
 def test_original_vigenere_code():
     assert original_vinegere_code("bbbbb",'b') == "ccccc"
     assert original_vinegere_uncode_known(original_vinegere_code("kromka kromka uber alles",'g'),'g') == "kromka kromka uber alles"
+    assert original_vinegere_code(";'[]!@#$%^&*()-=",'x') == ";'[]!@#$%^&*()-="
+    assert original_vinegere_code("b[];',./bb!@#$%^b7890b", 'b') == "c[];',./cc!@#$%^c7890c"
+    assert original_vinegere_uncode_known(original_vinegere_code("b[];',./bb!@#$%^b7890b", 'b'),'b') == "b[];',./bb!@#$%^b7890b"
 
 def test_weird_alphabet_code():
     assert weird_alphabet_code("abcdefghijklmnopqrstuvwxyz","bcdefghijklmnopqrstuvwxyz") == "bcdefghijklmnopqrstuvwxyza"

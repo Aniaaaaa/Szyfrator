@@ -168,27 +168,28 @@ def bacon_uncode(message):
 
 
 def original_vinegere_code(message, key_letter):
-    key_letter.lower()
+    key_letter = key_letter.lower()
     coded_message = ""
-    coded_message += caesar_code(message[0],  (ord(key_letter[0].lower()) - 97) % 26)
-    for i in range(1, len(message)):
-        if message[i - 1] in alphabet:
-            coded_message += caesar_code(message[i], (ord(message[i-1].lower()) - 97) % 26)
+    for i in message:
+        if i in alphabet:
+            new_key_letter = i.lower()
+            coded_message += caesar_code(i, (ord(key_letter.lower()) - 97) % 26)
+            key_letter = new_key_letter
         else:
-            coded_message += caesar_code(message[i], (ord(message[i - 2].lower()) - 97) % 26)
+            coded_message += i
     return coded_message
-
 
 def original_vinegere_uncode_known(message, key):
     uncoded_message = ""
-    uncoded_message += caesar_code(message[0], 26-((ord(key.lower()) -97) % 26))
-    for i in range(1, len(message)):
-        if uncoded_message[i-1] in alphabet:
-            uncoded_message += caesar_code(message[i], 26 - ((ord(uncoded_message[i-1].lower()) -97) % 26))
+    key = key.lower()
+    for i in message:
+        if i in alphabet:
+            uncoded_letter = caesar_code(i, 26-((ord(key.lower()) -97) % 26))
+            key = uncoded_letter
+            uncoded_message += uncoded_letter
         else:
-            uncoded_message += caesar_code(message[i], 26 - ((ord(uncoded_message[i - 2].lower()) -97) % 26))
+            uncoded_message += i
     return uncoded_message
-
 
 def original_vinegere_uncode_blind(message):
     possible_answers = list()
