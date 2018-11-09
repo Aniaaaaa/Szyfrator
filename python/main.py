@@ -87,6 +87,7 @@ def atbash_uncode(message):
 
 def transposition_code(message, key):
     key = int(float(key))
+    message = "".join(message.split(" "))
     coded_message = ""
     message = "".join(message.split(" "))
     for i in range(key):
@@ -98,6 +99,7 @@ def transposition_code(message, key):
 
 def transposition_uncode_known(message, key):
     key = int(float(key))
+    message = "".join(message.split(" "))
     decoded_message = list(range(len(message)))
     x = 0
     y = 0
@@ -122,33 +124,34 @@ def transposition_uncode_blind(message):
 def bacon_code(message):
     coded_message = ""
     for letter in message:
-        number = ord(letter.lower()) - 97
-        if number >= 16:
-            coded_message += "b"
-            number -= 16
-        else:
-            coded_message += "a"
-        if number >= 8:
-            coded_message += "b"
-            number -= 8
-        else:
-            coded_message += "a"
-        if number >= 4:
-            coded_message += "b"
-            number -= 4
-        else:
-            coded_message += "a"
-        if number >= 2:
-            coded_message += "b"
-            number -= 2
-        else:
-            coded_message += "a"
-        if number >= 1:
-            coded_message += "b"
-            number -= 1
-        else:
-            coded_message += "a"
-        coded_message += " "
+        if letter in alphabet:
+            number = ord(letter.lower()) - 97
+            if number >= 16:
+                coded_message += "b"
+                number -= 16
+            else:
+                coded_message += "a"
+            if number >= 8:
+                coded_message += "b"
+                number -= 8
+            else:
+                coded_message += "a"
+            if number >= 4:
+                coded_message += "b"
+                number -= 4
+            else:
+                coded_message += "a"
+            if number >= 2:
+                coded_message += "b"
+                number -= 2
+            else:
+                coded_message += "a"
+            if number >= 1:
+                coded_message += "b"
+                number -= 1
+            else:
+                coded_message += "a"
+            coded_message += " "
     coded_message = coded_message[:-1]
     return coded_message
 
@@ -169,7 +172,7 @@ def original_vinegere_code(message, key_letter):
     coded_message = ""
     coded_message += caesar_code(message[0],  (ord(key_letter[0].lower()) - 97) % 26)
     for i in range(1, len(message)):
-        if message[i - 1] != " ":
+        if message[i - 1] in alphabet:
             coded_message += caesar_code(message[i], (ord(message[i-1].lower()) - 97) % 26)
         else:
             coded_message += caesar_code(message[i], (ord(message[i - 2].lower()) - 97) % 26)
@@ -180,7 +183,7 @@ def original_vinegere_uncode_known(message, key):
     uncoded_message = ""
     uncoded_message += caesar_code(message[0], 26-((ord(key.lower()) -97) % 26))
     for i in range(1, len(message)):
-        if uncoded_message[i-1] != " ":
+        if uncoded_message[i-1] in alphabet:
             uncoded_message += caesar_code(message[i], 26 - ((ord(uncoded_message[i-1].lower()) -97) % 26))
         else:
             uncoded_message += caesar_code(message[i], 26 - ((ord(uncoded_message[i - 2].lower()) -97) % 26))
@@ -196,6 +199,7 @@ def original_vinegere_uncode_blind(message):
 
 def railfence_code(message, key):
     key=int(float(key))
+    message = "".join(message.split(" "))
     code_list = list()
     for i in range(key):
         code_list.append("")
@@ -218,6 +222,7 @@ def railfence_code(message, key):
 
 def railfence_uncode_known(message, key):
     key = int(float(key))
+    message = "".join(message.split(" "))
     uncoded_message = ""
     lines_of_text = list()
     for i in range(key):
@@ -269,21 +274,21 @@ def weird_alphabet_code(message, key):
     message = message.lower()
     key = key.lower()
     key_alphabet = ""
-    alphabet = ""
+    weird_alphabet = ""
     coded_message = ""
     for x in key:
-        if x not in key_alphabet and ord(x.lower()) > 96 and ord(x.lower()) < 123:
+        if x not in key_alphabet and x in alphabet:
             key_alphabet += x
     for i in range(26):
         char = chr(97+i)
-        alphabet += char
+        weird_alphabet += char
         if char not in key_alphabet:
             key_alphabet += char
     for x in message:
-        if x != " ":
-            coded_message += key_alphabet[alphabet.index(x)]
+        if x in weird_alphabet:
+            coded_message += key_alphabet[weird_alphabet.index(x)]
         else:
-            coded_message += " "
+            coded_message += x
     return coded_message
 
 
@@ -301,10 +306,10 @@ def weird_alphabet_uncode(message, key):
         if chr(97+i) not in key_alphabet:
             key_alphabet += chr(97+i)
     for x in message:
-        if x != " ":
+        if x in alphabet:
             uncoded_message += alphabet[key_alphabet.index(x)]
         else:
-            uncoded_message += " "
+            uncoded_message += x
     return uncoded_message
 
 
@@ -335,5 +340,5 @@ def make_dictionary_english():
     return dictionary
 
 if __name__ == "__main__":
-	print(transposition_code("WE ARE DISCOVERED. FLEE AT ONCE", 3))
+	print(weird_alphabet_code("abcdefghijklmnopqrstuvwxyz","xyz"))
 
