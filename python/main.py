@@ -340,5 +340,6 @@ def make_dictionary_english():
     return dictionary
 
 if __name__ == "__main__":
-	print(weird_alphabet_code("abcdefghijklmnopqrstuvwxyz","xyz"))
+    nmb =1
+    print(railfence_uncode_known(railfence_code("abcdefghijklmnopqrstuvwxyz",nmb),nmb))
 
