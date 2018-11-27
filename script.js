@@ -56,24 +56,32 @@ szyfratorApp.controller('mainController', function($scope) {
 });
 
 szyfratorApp.controller('ceasarController', function($scope,$http,$route) {
-	$scope.routes = $route.current.loadedTemplateUrl;
+	$scope.alphabetLength=26;
+	$scope.pasteResultToInput = function(){
+		$scope.text = $scope.result;
+		$scope.result = "";
+	}
 	$scope.code = function(){
-		$http.post(API_URL+'/ceasarCode', {"text": $scope.text, "key": $scope.key}).
-		success(function(results) {
-		  $scope.result = "Zakodowany tekst: " + results;
-		}).
-		error(function(error) {
-			$scope.result = error;
-		});
+		if ($scope.text != undefined && $scope.key != undefined) {
+			$http.post(API_URL+'/ceasarCode', {"text": $scope.text, "key": $scope.key}).
+			success(function(results) {
+				$scope.result = results;
+			}).
+			error(function(error) {
+				$scope.result = error;
+			});
+		}
 	}
 	$scope.decode = function(){
-		$http.post(API_URL+'/ceasarDecode', {"text": $scope.text, "key": $scope.key}).
-		success(function(results) {
-		  $scope.result = "Odkodowany tekst: " + results;
-		}).
-		error(function(error) {
-			$scope.result = error;
-		});
+		if ($scope.text != undefined && $scope.key != undefined) {
+			$http.post(API_URL+'/ceasarDecode', {"text": $scope.text, "key": $scope.key}).
+			success(function(results) {
+			  $scope.result = results;
+			}).
+			error(function(error) {
+				$scope.result = error;
+			});
+		}
 	}
 });
 
