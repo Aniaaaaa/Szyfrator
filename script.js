@@ -212,10 +212,14 @@ szyfratorApp.controller('weirdAlphabetController', function($scope, $http) {
 });
 
 szyfratorApp.controller('atbashController', function($scope, $http) {
+	$scope.pasteResultToInput = function(){
+		$scope.text = $scope.result;
+		$scope.result = "";
+	}
 	$scope.code = function(){
 		$http.post(API_URL+'/atbashCode', {"text": $scope.text, "key": $scope.key}).
 		success(function(results) {
-		  $scope.result = "Zakodowany tekst: " + results;
+		  $scope.result = results;
 		}).
 		error(function(error) {
 			$scope.result = error;
@@ -224,7 +228,7 @@ szyfratorApp.controller('atbashController', function($scope, $http) {
 	$scope.decode = function(){
 		$http.post(API_URL+'/atbashDecode', {"text": $scope.text, "key": $scope.key}).
 		success(function(results) {
-		  $scope.result = "Odkodowany tekst: " + results;
+		  $scope.result = results;
 		}).
 		error(function(error) {
 			$scope.result = error;
