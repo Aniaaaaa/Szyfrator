@@ -56,7 +56,13 @@ szyfratorApp.controller('mainController', function($scope) {
 });
 
 szyfratorApp.controller('ceasarController', function($scope,$http,$route) {
-	$scope.alphabetLength=26;
+	$http.get(API_URL+'/alphabetLength').
+		success(function(results){
+			$scope.alphabetLength = results;
+		}).
+		error(function(error){
+			$scope.alphabetLength = error;
+		})
 	$scope.pasteResultToInput = function(){
 		$scope.text = $scope.result;
 		$scope.result = "";
@@ -128,31 +134,54 @@ szyfratorApp.controller('transpositionController', function($scope,$http) {
 });
 
 szyfratorApp.controller('baconController', function($scope,$http) {
+	$scope.pasteResultToInput = function(){
+		$scope.text = $scope.result;
+		$scope.result = "";
+	}
 	$scope.code = function(){
-		$http.post(API_URL+'/baconCode', {"text": $scope.text}).
-		success(function(results) {
-		  $scope.result = "Zakodowany tekst: " + results;
-		}).
-		error(function(error) {
-			$scope.result = error;
-		});
+		if ($scope.text != undefined) {
+			$http.post(API_URL+'/baconCode', {"text": $scope.text}).
+			success(function(results) {
+			  $scope.result = results;
+			}).
+			error(function(error) {
+				$scope.result = error;
+			});
+		}
 	}
 	$scope.decode = function(){
-		$http.post(API_URL+'/baconDecode', {"text": $scope.text}).
-		success(function(results) {
-		  $scope.result = "Odkodowany tekst: " + results;
-		}).
-		error(function(error) {
-			$scope.result = error;
-		});
+		if ($scope.text != undefined) {
+			$http.post(API_URL+'/baconDecode', {"text": $scope.text}).
+			success(function(results) {
+			  $scope.result = results;
+			}).
+			error(function(error) {
+				$scope.result = error;
+			});
+		}
 	}
 });
 
 szyfratorApp.controller('originalVigenereController', function($scope,$http) {
+
+	$http.get(API_URL+'/alphabet').
+		success(function(results){
+			$scope.alphabet = results;
+			$scope.alphabet_formatted = results;
+		}).
+		error(function(error){
+			$scope.alphabet = error;
+			$scope.alphabet_formatted = error;
+		})
+
+	$scope.pasteResultToInput = function(){
+		$scope.text = $scope.result;
+		$scope.result = "";
+	}
 	$scope.code = function(){
 		$http.post(API_URL+'/originalVigenereCode', {"text": $scope.text, "key": $scope.key}).
 		success(function(results) {
-		  $scope.result = "Zakodowany tekst: " + results;
+		  $scope.result = results;
 		}).
 		error(function(error) {
 			$scope.result = error;
@@ -161,7 +190,7 @@ szyfratorApp.controller('originalVigenereController', function($scope,$http) {
 	$scope.decode = function(){
 		$http.post(API_URL+'/originalVigenereDecode', {"text": $scope.text, "key": $scope.key}).
 		success(function(results) {
-		  $scope.result = "Odkodowany tekst: " + results;
+		  $scope.result =results;
 		}).
 		error(function(error) {
 			$scope.result = error;
@@ -217,21 +246,25 @@ szyfratorApp.controller('atbashController', function($scope, $http) {
 		$scope.result = "";
 	}
 	$scope.code = function(){
-		$http.post(API_URL+'/atbashCode', {"text": $scope.text, "key": $scope.key}).
-		success(function(results) {
-		  $scope.result = results;
-		}).
-		error(function(error) {
-			$scope.result = error;
-		});
+		if ($scope.text != undefined) {
+			$http.post(API_URL+'/atbashCode', {"text": $scope.text, "key": $scope.key}).
+			success(function(results) {
+			  $scope.result = results;
+			}).
+			error(function(error) {
+				$scope.result = error;
+			});
+		}
 	}
 	$scope.decode = function(){
-		$http.post(API_URL+'/atbashDecode', {"text": $scope.text, "key": $scope.key}).
-		success(function(results) {
-		  $scope.result = results;
-		}).
-		error(function(error) {
-			$scope.result = error;
-		});
+		if ($scope.text != undefined) {
+			$http.post(API_URL+'/atbashDecode', {"text": $scope.text, "key": $scope.key}).
+			success(function(results) {
+			  $scope.result = results;
+			}).
+			error(function(error) {
+				$scope.result = error;
+			});
+		}
 	}
 });

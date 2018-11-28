@@ -3,6 +3,12 @@ import math
 special_signs = {",", " ", ".", "?", "!"}
 alphabet ="QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm"
 
+def get_alphabet():
+    return alphabet
+
+def get_alphabet_length():
+    return len(alphabet)
+
 def caesar_code(message, key):
     key = int(float(key))
     message = str(message)

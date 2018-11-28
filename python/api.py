@@ -7,6 +7,17 @@ from flask_restful import Resource, Api
 app = Flask(__name__)
 CORS(app)
 
+#Alphabet
+@app.route('/alphabet', methods=['GET'])
+def get_alphabet():
+    result = main.get_alphabet()
+    return result
+
+@app.route('/alphabetLength', methods=['GET'])
+def get_alphabet_length():
+    result = str(main.get_alphabet_length())
+    return result
+
 #Caesar
 @app.route('/ceasarCode', methods=['POST'])
 def post_ceasarCode():
