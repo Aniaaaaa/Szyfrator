@@ -1,0 +1,23 @@
+{
+  "name": "szyfrator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "dependencies": {
+    "angular": "^1.7.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aniaaaaa/Szyfrator.git"
+  },
+  "author": "AWiśniewska",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Aniaaaaa/Szyfrator/issues"
+  },
+  "homepage": "https://github.com/Aniaaaaa/Szyfrator#readme"
+}
