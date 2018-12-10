@@ -112,7 +112,7 @@ szyfratorApp.controller('vigenereController', function($scope, $http) {
 		if ($scope.text != undefined && $scope.key != undefined) {
 			$http.post(API_URL+'/vigenereCode', {"text": $scope.text, "key": $scope.key}).
 			success(function(results) {
-			  $scope.result = "Zakodowany tekst: " + results;
+			  $scope.result = results;
 			}).
 			error(function(error) {
 				$scope.result = error;
@@ -124,7 +124,7 @@ szyfratorApp.controller('vigenereController', function($scope, $http) {
 		if ($scope.text != undefined && $scope.key != undefined) {
 			$http.post(API_URL+'/vigenereDecode', {"text": $scope.text, "key": $scope.key}).
 			success(function(results) {
-			  $scope.result = "Odkodowany tekst: " + results;
+			  $scope.result = results;
 			}).
 			error(function(error) {
 				$scope.result = error;
@@ -144,7 +144,7 @@ szyfratorApp.controller('transpositionController', function($scope,$http) {
 		if ($scope.text != undefined && $scope.key != undefined) {
 			$http.post(API_URL+'/transpositionCode', {"text": $scope.text, "key": $scope.key}).
 			success(function(results) {
-			  $scope.result = "Zakodowany tekst: " + results;
+			  $scope.result ="R"+ results;
 			}).
 			error(function(error) {
 				$scope.result = error;
@@ -156,7 +156,7 @@ szyfratorApp.controller('transpositionController', function($scope,$http) {
 		if ($scope.text != undefined && $scope.key != undefined) {
 			$http.post(API_URL+'/transpositionDecode', {"text": $scope.text, "key": $scope.key}).
 			success(function(results) {
-			  $scope.result = "Odkodowany tekst: " + results;
+			  $scope.result = results;
 			}).
 			error(function(error) {
 				$scope.result = error;
@@ -254,7 +254,7 @@ szyfratorApp.controller('railFenceController', function($scope, $http) {
 		if ($scope.text != undefined && $scope.key != undefined) {
 			$http.post(API_URL+'/railFenceCode', {"text": $scope.text, "key": $scope.key}).
 			success(function(results) {
-			  $scope.result = "Zakodowany tekst: " + results;
+			  $scope.result = results;
 			}).
 			error(function(error) {
 				$scope.result = error;
@@ -266,7 +266,7 @@ szyfratorApp.controller('railFenceController', function($scope, $http) {
 		if ($scope.text != undefined && $scope.key != undefined) {
 			$http.post(API_URL+'/railFenceDecode', {"text": $scope.text, "key": $scope.key}).
 			success(function(results) {
-			  $scope.result = "Odkodowany tekst: " + results;
+			  $scope.result = results;
 			}).
 			error(function(error) {
 				$scope.result = error;
@@ -300,7 +300,7 @@ szyfratorApp.controller('weirdAlphabetController', function($scope, $http) {
 		if ($scope.text != undefined && $scope.key != undefined) {
 			$http.post(API_URL+'/weirdAlphabetCode', {"text": $scope.text, "key": $scope.key}).
 			success(function(results) {
-		  	$scope.result = "Zakodowany tekst: " + results;
+		  	$scope.result = results;
 			}).
 			error(function(error) {
 					$scope.result = error;
@@ -312,7 +312,7 @@ szyfratorApp.controller('weirdAlphabetController', function($scope, $http) {
 		if ($scope.text != undefined && $scope.key != undefined) {
 			$http.post(API_URL+'/weirdAlphabetDecode', {"text": $scope.text, "key": $scope.key}).
 			success(function(results) {
-			  $scope.result = "Odkodowany tekst: " + results;
+			  $scope.result = results;
 			}).
 			error(function(error) {
 				$scope.result = error;

@@ -17,7 +17,7 @@
 			<div class="col-sm-5" style="padding-top:40px;">
 				<label>Klucz: {{key.$touched}}</label><br />
 				<div>
-					<input name="key" type="text" class="form-control" ng-model="key" style="position:absolute;width:100%;" required ng-pattern="/^(2[0-6]|1[0-9]|[2-9])$/"><br /><br/>
+					<input name="key" type="text" class="form-control" ng-model="key" style="position:absolute;width:100%;" required ng-pattern="/^([2-9]|[0-9]{2,})$/"><br /><br/>
 					<div class="alert alert-warning" ng-show="myForm.key.$error.required && myForm.key.$invalid">Wymagany klucz będący liczbą od 2 do nieskończoności.</div>
 					<div class="alert alert-danger" ng-show="myForm.key.$invalid && !myForm.key.$error.required">Klucz powinien być liczbą od 2 do nieskończoności.</div>
 				</div>	
