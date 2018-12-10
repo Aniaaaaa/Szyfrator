@@ -17,9 +17,9 @@
 			<div class="col-sm-5" style="padding-top:40px;">
 				<label>Klucz: {{key.$touched}}</label><br />
 				<div>
-					<input name="key" type="text" class="form-control" ng-model="key" style="position:absolute;width:100%;" required ng-pattern="/^(2[0-6]|1[0-9]|[0-9])$/"><br /><br/>
-					<div class="alert alert-warning" ng-show="myForm.key.$error.required && myForm.key.$invalid">Wymagany klucz będący liczbą od 0 do {{alphabetLength}}.</div>
-					<div class="alert alert-danger" ng-show="myForm.key.$invalid && !myForm.key.$error.required">Klucz powinien być liczbą od 0 do {{alphabetLength}}.</div>
+					<input name="key" type="text" class="form-control" ng-model="key" style="position:absolute;width:100%;" required ng-pattern="/^[0-9]*$/"><br /><br/>
+					<div class="alert alert-warning" ng-show="myForm.key.$error.required && myForm.key.$invalid">Wymagany klucz będący liczbą.</div>
+					<div class="alert alert-danger" ng-show="myForm.key.$invalid && !myForm.key.$error.required">Klucz powinien być liczbą.</div>
 				</div>	
 			</div>
 			<div class="col-sm-2"></div>
@@ -30,5 +30,6 @@
 			</div>
 		</div>
 	</div>
-</form> 
+</form> <div style="padding-left: 1300 px; margin-left: 20%">
+{{regExp}}</div>
 

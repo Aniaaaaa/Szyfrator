@@ -56,15 +56,7 @@ szyfratorApp.controller('mainController', function($scope) {
 });
 
 szyfratorApp.controller('ceasarController', function($scope,$http,$route) {
-	
-	$http.get(API_URL+'/alphabetLength').
-		success(function(results){
-			$scope.alphabetLength = results;
-		}).
-		error(function(error){
-			$scope.alphabetLength = error;
-		})
-	
+
 	$scope.pasteResultToInput = function(){
 		$scope.text = $scope.result;
 		$scope.result = "";
