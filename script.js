@@ -144,7 +144,8 @@ szyfratorApp.controller('transpositionController', function($scope,$http) {
 		if ($scope.text != undefined && $scope.key != undefined) {
 			$http.post(API_URL+'/transpositionCode', {"text": $scope.text, "key": $scope.key}).
 			success(function(results) {
-			  $scope.result ="R"+ results;
+				console.log(results);
+			  $scope.result = results;
 			}).
 			error(function(error) {
 				$scope.result = error;
