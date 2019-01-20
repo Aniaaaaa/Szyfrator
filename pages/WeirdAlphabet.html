@@ -19,7 +19,7 @@
 			<div class="col-sm-5" style="padding-top:40px;">
 				<label>Klucz: {{key.$touched}}</label><br />
 				<div>
-					<input name="key" type="text" class="form-control" ng-model="key" style="position:absolute;width:100%;" required ng-pattern="/^[{{alphabet}}]$/"><br /><br/>
+					<input name="key" type="text" class="form-control" ng-model="key" style="position:absolute;width:100%;" required ng-pattern="/^[a-zA-Z]*$/"><br /><br/>
 					<div class="alert alert-warning" ng-show="myForm.key.$error.required && myForm.key.$invalid">Wymagany klucz będący łańcuchem znaków z alfabetu: {{alphabet_formatted}}.</div>
 					<div class="alert alert-danger" ng-show="myForm.key.$invalid && !myForm.key.$error.required">Klucz będący łańcuchem znaków z alfabetu: {{alphabet_formatted}}.</div>
 				</div>	

@@ -10,22 +10,21 @@ def get_alphabet_length():
     return len(alphabet)
 
 def caesar_code(message, key):
-    key = int(float(key))
+    key = int(key)
     message = str(message)
     message_list = list(message)
     for i in range(len(message_list)):
         if message_list[i] in alphabet:
             letter_ascii = ord(message_list[i])
             if letter_ascii > 96:
-                letter_ascii -= 96
-                add = 96
+                letter_ascii -= 97
+                add = 97
             else:
-                letter_ascii -= 64
-                add = 64
+                letter_ascii -= 65
+                add = 65
             letter_ascii += key
-            while letter_ascii > 26:
-                letter_ascii -= 26
-            letter_ascii += add
+            letter_ascii = (letter_ascii % 26) + add
+            # letter_ascii += add
             message_list[i] = chr(letter_ascii)
     message = "".join(message_list)
     return message
@@ -40,7 +39,7 @@ def caesar_uncode_blind(message):
 
 
 def caesar_uncode_known(message, key):
-    key = int(float(key))
+    key = int(key)
     return caesar_code(message, 26-key)
 
 
@@ -97,7 +96,7 @@ def transposition_code(message, key):
     coded_message = ""
     message = "".join(message.split(" "))
     for i in range(key):
-        for j in range(int(math.ceil(len(message)/key))):
+        for j in range(int(math.ceil(float(len(message))/key))):
             if i + j*key < len(message):
                 coded_message += message[i + j*key]
     return coded_message
@@ -234,7 +233,7 @@ def railfence_uncode_known(message, key):
     lines_of_text = list()
     for i in range(key):
         lines_of_text.append("")
-    letter_amount = math.floor(len(message)/(2*key - 2))
+    letter_amount = int(math.floor(len(message)/float(2*key - 2)))
     letter_modulo = len(message) % (2*key - 2)
     if letter_modulo > 0:
         lines_of_text[0] += message[:letter_amount + 1]
@@ -349,4 +348,3 @@ def make_dictionary_english():
 if __name__ == "__main__":
     nmb =1
     print(railfence_uncode_known(railfence_code("abcdefghijklmnopqrstuvwxyz",nmb),nmb))
-

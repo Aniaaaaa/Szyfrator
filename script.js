@@ -330,8 +330,8 @@ szyfratorApp.controller('atbashController', function($scope, $http) {
 	}
 	
 	$scope.code = function(){
-		if ($scope.text != undefined && $scope.key != undefined) {
-			$http.post(API_URL+'/atbashCode', {"text": $scope.text, "key": $scope.key}).
+		if ($scope.text != undefined) {
+			$http.post(API_URL+'/atbashCode', {"text": $scope.text}).
 			success(function(results) {
 			  $scope.result = results;
 			}).
@@ -342,8 +342,8 @@ szyfratorApp.controller('atbashController', function($scope, $http) {
 	}
 	
 	$scope.decode = function(){
-		if ($scope.text != undefined && $scope.key != undefined) {
-			$http.post(API_URL+'/atbashDecode', {"text": $scope.text, "key": $scope.key}).
+		if ($scope.text != undefined) {
+			$http.post(API_URL+'/atbashDecode', {"text": $scope.text}).
 			success(function(results) {
 			  $scope.result = results;
 			}).
